@@ -5,9 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>アイス募金管理</title>
     <style>
-        /* =========================================
-           CSS: 画面のデザイン（夏らしく爽やかな配色）
-        ========================================= */
+        /* CSS: 画面のデザイン（夏らしく爽やかな配色） */
         :root {
             --bg-color: #f0fbf7;
             --text-color: #2c3e50;
@@ -26,7 +24,7 @@
             background-color: var(--bg-color);
             color: var(--text-color);
         }
-        
+
         .container {
             max-width: 500px;
             margin: 0 auto;
@@ -38,47 +36,47 @@
         }
 
         .deco-kakigori {
-            position: fixed;     
+            position: fixed;
             bottom: 20px;
             right: 20px;
             width: 56px;
             height: 56px;
-            opacity: 0.18;       
-            pointer-events: none; 
+            opacity: 0.18;
+            pointer-events: none;
             z-index: 0;
         }
-        
+
         .screen { display: none; }
         .screen.active { display: block; }
-        
+
         .app-header {
             display: flex;
-            justify-content: space-between; 
-            align-items: center;            
+            justify-content: space-between;
+            align-items: center;
             margin-bottom: 15px;
         }
         .app-header h1 {
             font-size: 1.3em;
             margin: 0;
             color: var(--primary-color);
-            white-space: nowrap; 
-            flex-shrink: 0;      
+            white-space: nowrap;
+            flex-shrink: 0;
         }
-        
+
         .app-header-flex {
             display: flex;
             justify-content: space-between;
             align-items: center;
             margin-bottom: 20px;
         }
-        
+
         .balance-card {
             background-color: var(--card-bg);
             border-radius: 15px;
             padding: 25px;
             text-align: center;
             margin-bottom: 15px;
-            box-shadow: 0 4px 10px rgba(0, 188, 212, 0.1); 
+            box-shadow: 0 4px 10px rgba(0, 188, 212, 0.1);
         }
 
         .btn-history-corner {
@@ -90,30 +88,28 @@
             cursor: pointer;
             padding: 5px 10px;
             box-shadow: none;
-            width: auto;         
+            width: auto;
             font-weight: normal;
             line-height: 1.4;
-            white-space: nowrap; 
-            flex-shrink: 0;      
+            white-space: nowrap;
+            flex-shrink: 0;
         }
-        .btn-history-corner:active {
-            transform: translateY(1px);
-        }
+        .btn-history-corner:active { transform: translateY(1px); }
 
-        .balance-card h2 { 
-            margin: 0 0 10px 0; 
-            font-size: 1.1em; 
-            color: #607d8b; 
+        .balance-card h2 {
+            margin: 0 0 10px 0;
+            font-size: 1.1em;
+            color: #607d8b;
             display: flex;
             justify-content: center;
             align-items: center;
-            gap: 8px; 
+            gap: 8px;
         }
-        .balance-card .big-amount { 
-            font-size: 2.8em; 
-            font-weight: bold; 
+        .balance-card .big-amount {
+            font-size: 2.8em;
+            font-weight: bold;
             color: var(--text-color);
-            margin: 0; 
+            margin: 0;
             letter-spacing: 1px;
         }
 
@@ -122,9 +118,7 @@
             gap: 15px;
             margin-bottom: 15px;
         }
-        .flex-half {
-            flex: 1;
-        }
+        .flex-half { flex: 1; }
 
         .stat-card {
             background-color: var(--card-bg);
@@ -135,38 +129,24 @@
         }
         .stat-card p { margin: 0; font-size: 0.85em; color: #607d8b; }
         .stat-card span { display: block; font-size: 1.3em; font-weight: bold; margin-top: 5px; }
-        .text-cyan  { color: var(--primary-color); }
-        .text-red   { color: #e53935; }
+        .text-cyan { color: var(--primary-color); }
+        .text-red  { color: #e53935; }
 
-        .purchase-card {
+        .recommend-card {
             background-color: var(--card-bg);
             border-radius: 12px;
             padding: 15px;
-            margin-bottom: 20px;
+            margin-bottom: 15px;
             box-shadow: 0 2px 6px rgba(0,0,0,0.05);
             border: 1px solid var(--border-color);
         }
-        .purchase-card h3 {
-            margin: 0 0 10px 0;
+        .recommend-card h3 {
+            margin: 0 0 8px 0;
             font-size: 1em;
             color: var(--text-color);
             border-bottom: 2px solid var(--bg-color);
             padding-bottom: 5px;
         }
-        .purchase-row {
-            display: flex;
-            align-items: center;
-            margin-bottom: 6px;
-            font-size: 0.95em;
-            gap: 8px;
-        }
-        .purchase-row::before {
-            content: '●';
-            font-size: 0.5em;
-            color: var(--primary-color);
-            flex-shrink: 0; 
-        }
-        .purchase-empty { text-align: center; color: #999; font-size: 0.9em; margin: 10px 0; }
 
         button {
             width: 100%;
@@ -181,11 +161,10 @@
             transition: transform 0.1s;
         }
         button:active { transform: translateY(2px); box-shadow: 0 2px 3px rgba(0,0,0,0.1); }
-        
-        .btn-donate { background-color: var(--accent-green); margin-bottom: 15px; }
-        .btn-purchase { background-color: var(--accent-orange); font-size: 0.95em; padding: 12px; }
-        .btn-adjust { background-color: var(--accent-purple); font-size: 0.95em; padding: 12px; }
-        .btn-back { background-color: #b0bec5; margin-top: 15px; }
+
+        .btn-donate   { background-color: var(--accent-green);  margin-bottom: 15px; }
+        .btn-purchase { background-color: var(--accent-orange); margin-bottom: 15px; }
+        .btn-back     { background-color: #b0bec5; margin-top: 15px; }
         .btn-delete {
             width: auto;
             padding: 6px 12px;
@@ -194,13 +173,21 @@
             margin-left: 10px;
             box-shadow: none;
         }
-        
         .btn-refresh {
             background-color: #e0f7fa;
             color: #00838f;
             margin-bottom: 15px;
             box-shadow: none;
             border: 1px solid #b2ebf2;
+        }
+        .btn-pin-change {
+            background-color: #f3e5f5;
+            color: var(--accent-purple);
+            border: 1px solid #e1bee7;
+            font-size: 0.9em;
+            padding: 10px;
+            box-shadow: none;
+            margin-top: 10px;
         }
 
         .footer-info {
@@ -211,7 +198,7 @@
         }
 
         label { display: block; margin-top: 15px; font-weight: bold; font-size: 0.95em; }
-        input[type="number"], input[type="text"] {
+        input[type="number"], input[type="text"], input[type="password"] {
             width: 100%;
             padding: 12px;
             margin-top: 8px;
@@ -222,10 +209,9 @@
             background-color: #fafafa;
         }
         input:focus { outline: 2px solid var(--primary-color); border-color: transparent; }
-        
+
         .history-section { margin-top: 15px; }
-        
-        /* 🔄 追加: アコーディオン用の見出しデザイン */
+
         .history-header {
             display: flex;
             justify-content: space-between;
@@ -240,12 +226,14 @@
         }
         .history-header:active { transform: translateY(1px); }
         .history-header h3 { margin: 0; font-size: 1.05em; border: none; padding: 0; }
-        
-        /* 🔄 追加: 開閉する中身と、件数・空表示のデザイン */
+
         .history-content { display: none; padding-bottom: 15px; }
         .history-content.open { display: block; }
         .history-count { font-size: 0.9em; color: #90a4ae; font-weight: bold; }
-        .history-empty { text-align: center; color: #90a4ae; font-size: 0.9em; padding: 15px; background-color: var(--card-bg); border-radius: 8px; }
+        .history-empty {
+            text-align: center; color: #90a4ae; font-size: 0.9em; padding: 15px;
+            background-color: var(--card-bg); border-radius: 8px;
+        }
 
         ul { list-style-type: none; padding: 0; margin: 0; }
         li {
@@ -259,29 +247,76 @@
             box-shadow: 0 1px 3px rgba(0,0,0,0.05);
         }
         .item-info { flex-grow: 1; }
-        .item-date { font-size: 0.75em; color: #90a4ae; margin-bottom: 4px; }
+        .item-date   { font-size: 0.75em; color: #90a4ae; margin-bottom: 4px; }
         .item-amount { font-weight: bold; font-size: 1.05em; }
 
         #loading-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
             background-color: rgba(255, 255, 255, 0.85);
-            display: none; 
-            justify-content: center;
-            align-items: center;
-            z-index: 9999;
-            font-size: 1.2em;
-            font-weight: bold;
-            color: var(--primary-color);
+            display: none; justify-content: center; align-items: center;
+            z-index: 9999; font-size: 1.2em; font-weight: bold; color: var(--primary-color);
+        }
+
+        /* PINモーダル（簡易ロック。本格セキュリティではなく試験運用上の共有ロックです） */
+        #pin-modal {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            display: none; justify-content: center; align-items: center;
+            z-index: 10000;
+        }
+        .pin-modal-inner {
+            background: #fff; border-radius: 15px; padding: 30px 25px;
+            width: 280px; max-width: 90%; text-align: center;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.2);
+        }
+        .pin-modal-inner h3 { margin: 0 0 5px 0; color: var(--text-color); font-size: 1.05em; }
+        .pin-modal-inner .pin-desc { margin: 0 0 15px 0; font-size: 0.8em; color: #90a4ae; }
+        #pin-input {
+            font-size: 2em; text-align: center; width: 140px; letter-spacing: 10px;
+            border: 2px solid var(--primary-color); border-radius: 8px;
+            padding: 10px; background: #fafafa; box-sizing: border-box;
+        }
+        #pin-input:focus { outline: none; border-color: var(--primary-color); }
+        .pin-buttons { display: flex; gap: 10px; margin-top: 15px; }
+        .pin-buttons button { flex: 1; padding: 12px; font-size: 1em; margin: 0; }
+        #pin-error { color: #e53935; font-size: 0.85em; margin-top: 8px; min-height: 1.2em; }
+
+        /* パスワード変更セクション（記録一覧画面内） */
+        .pin-change-section {
+            margin-top: 20px; background: var(--card-bg); border-radius: 12px;
+            padding: 20px; box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+            border: 1px solid #e1bee7;
+        }
+        .pin-change-section h3 { margin: 0 0 4px 0; color: var(--accent-purple); font-size: 1em; }
+        .pin-change-section .pin-note { font-size: 0.8em; color: #90a4ae; margin: 0 0 5px 0; }
+
+        /* 買い出し報告画面：参考残額表示 */
+        .calc-balance-info {
+            text-align: center; background: #fff8e1; padding: 12px;
+            border-radius: 8px; border: 1px solid #ffe082;
+            margin-bottom: 5px; font-size: 0.9em; color: #607d8b;
         }
     </style>
 </head>
 <body>
 
 <div id="loading-overlay">🔄 通信中...</div>
+
+<!-- PINモーダル（簡易ロック。全員共通パスワードはGAS/スプレッドシート側で管理します） -->
+<div id="pin-modal">
+    <div class="pin-modal-inner">
+        <h3>🔒 パスワードを入力</h3>
+        <p class="pin-desc">買い出し報告には共通パスワードが必要です</p>
+        <input type="password" id="pin-input" maxlength="4" inputmode="numeric"
+               pattern="[0-9]*" placeholder="••••"
+               onkeydown="if(event.key==='Enter') submitPin();">
+        <div id="pin-error"></div>
+        <div class="pin-buttons">
+            <button onclick="submitPin()" style="background:var(--primary-color);">確認</button>
+            <button onclick="cancelPin()" style="background:#b0bec5;">キャンセル</button>
+        </div>
+    </div>
+</div>
 
 <svg class="deco-kakigori" viewBox="0 0 56 80" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
     <path d="M10 50 Q10 68 28 68 Q46 68 46 50 Z" fill="#b2dfdb"/>
@@ -295,6 +330,7 @@
 
 <div class="container">
 
+    <!-- ホーム画面 -->
     <div id="screen-home" class="screen active">
         <div class="app-header">
             <h1>🍦 アイス募金</h1>
@@ -311,7 +347,7 @@
             </h2>
             <p id="disp-balance" class="big-amount">0円</p>
         </div>
-        
+
         <div class="flex-row">
             <div class="stat-card flex-half">
                 <p>集まった額</p>
@@ -323,30 +359,29 @@
             </div>
         </div>
 
-        <div class="purchase-card">
-            <h3>買ったもの</h3>
-            <div id="home-purchase-list"></div>
+        <!-- 最新の買い出し報告にオススメがある場合のみ表示 -->
+        <div id="home-recommend-card" class="recommend-card" style="display:none;">
+            <h3>🌟 買い出し担当オススメ</h3>
+            <div id="home-recommend-text" style="font-size:1em; color:var(--text-color); padding:2px 0;"></div>
         </div>
 
         <button class="btn-refresh" onclick="fetchFromCloud()">🔄 最新の状態に更新</button>
 
         <button class="btn-donate" onclick="changeScreen('screen-donation')">💰 募金を入力する</button>
-        
-        <div class="flex-row">
-            <button class="btn-purchase flex-half" onclick="changeScreen('screen-purchase')">🛍️ 買い出し報告</button>
-            <button class="btn-adjust flex-half" onclick="changeScreen('screen-adjustment')">⚖️ 残高調整</button>
-        </div>
+
+        <button class="btn-purchase" onclick="requestPin(() => changeScreen('screen-purchase'))">🛍️ 買い出し報告</button>
 
         <div class="footer-info">
-            最後に貯金箱と答え合わせした日： <span id="disp-last-adjust-date">未実施</span>
+            最新の買い出し報告： <span id="disp-last-purchase-date">未実施</span>
         </div>
     </div>
 
+    <!-- 記録の一覧・削除画面 -->
     <div id="screen-history" class="screen">
         <div class="app-header-flex">
             <h1 style="color: #607d8b;">📝 記録の一覧</h1>
         </div>
-        
+
         <div class="history-section">
             <div class="history-header" onclick="toggleHistoryCategory('purchases')">
                 <h3 style="color: var(--accent-orange);"><span id="icon-purchases">＞</span> 🛍️ 買い出しの記録</h3>
@@ -356,7 +391,7 @@
                 <ul id="list-purchases"></ul>
             </div>
         </div>
-        
+
         <div class="history-section">
             <div class="history-header" onclick="toggleHistoryCategory('donations')">
                 <h3 style="color: var(--accent-green);"><span id="icon-donations">＞</span> 💰 募金の記録</h3>
@@ -366,65 +401,68 @@
                 <ul id="list-donations"></ul>
             </div>
         </div>
-        
-        <div class="history-section">
-            <div class="history-header" onclick="toggleHistoryCategory('adjustments')">
-                <h3 style="color: var(--accent-purple);"><span id="icon-adjustments">＞</span> ⚖️ 残高調整の記録</h3>
-                <span class="history-count" id="count-adjustments">0件</span>
-            </div>
-            <div class="history-content" id="content-adjustments">
-                <ul id="list-adjustments"></ul>
-            </div>
-        </div>
 
         <button class="btn-back" onclick="changeScreen('screen-home')">ホームに戻る</button>
+
+        <button class="btn-pin-change" onclick="startPinChange()">🔑 パスワード変更</button>
+
+        <!-- パスワード変更フォーム（PIN認証後に展開） -->
+        <div id="pin-change-section" class="pin-change-section" style="display:none;">
+            <h3>🔑 新しいパスワードを設定</h3>
+            <p class="pin-note">※ 簡易ロック用です。全端末共通のパスワードが変更されます。</p>
+            <label>新しいパスワード（4桁の数字）
+                <input type="password" id="input-new-pin" maxlength="4" inputmode="numeric"
+                       pattern="[0-9]*" placeholder="0000">
+            </label>
+            <label>確認のためもう一度
+                <input type="password" id="input-confirm-pin" maxlength="4" inputmode="numeric"
+                       pattern="[0-9]*" placeholder="0000">
+            </label>
+            <button style="background:var(--accent-purple); margin-top:15px;" onclick="submitNewPin()">パスワードを変更する</button>
+            <button class="btn-back" onclick="closePinChangeSection()">キャンセル</button>
+        </div>
     </div>
 
+    <!-- 募金入力画面 -->
     <div id="screen-donation" class="screen">
         <h2 style="color: var(--accent-green);">💰 募金入力</h2>
         <label>金額 (最低100円) <span style="color:#e53935;">*</span>
             <input type="number" id="input-donation-amount" min="100" placeholder="例: 500">
         </label>
-        <label>メモ (任意)
-            <input type="text" id="input-donation-memo" placeholder="例: 今月分">
-        </label>
         <button class="btn-donate" style="margin-top:20px;" onclick="saveDonation()">登録する</button>
         <button class="btn-back" onclick="changeScreen('screen-home')">戻る</button>
     </div>
 
+    <!-- 買い出し報告画面（PIN認証後に遷移） -->
     <div id="screen-purchase" class="screen">
         <h2 style="color: var(--accent-orange);">🛍️ 買い出し報告</h2>
-        <label>買ったもの (品名) <span style="color:#e53935;">*</span>
-            <input type="text" id="input-purchase-items" placeholder="例: バニラアイス3個">
-        </label>
+        <div class="calc-balance-info">
+            計算上ののこり（参考）: <strong id="disp-calc-balance-purchase">0円</strong>
+        </div>
         <label>募金から使った額 <span style="color:#e53935;">*</span>
             <input type="number" id="input-purchase-amount" min="0" placeholder="例: 450">
         </label>
-        <button class="btn-purchase" style="margin-top:20px; font-size:1.1em; padding:15px;" onclick="savePurchase()">登録する</button>
+        <label>買い出し後の実際の残額 <span style="color:#e53935;">*</span>
+            <input type="number" id="input-purchase-realAmount" min="0" placeholder="例: 3200">
+        </label>
+        <label>買い出し担当オススメ (任意)
+            <input type="text" id="input-purchase-items" placeholder="例: バニラアイス">
+        </label>
+        <button class="btn-purchase" style="margin-top:20px; margin-bottom:0;" onclick="savePurchase()">登録する</button>
         <button class="btn-back" onclick="changeScreen('screen-home')">戻る</button>
     </div>
 
-    <div id="screen-adjustment" class="screen">
-        <h2 style="color: var(--accent-purple);">⚖️ 残高調整</h2>
-        <p style="text-align:center; background:#f5f5f5; padding:15px; border-radius:8px; border:1px solid #eee;">
-            現在の計算上ののこり: <br><strong id="disp-calc-balance" style="font-size:1.5em; color:var(--primary-color);">0円</strong>
-        </p>
-        <p style="font-size:0.85em; color:#607d8b; margin-top:-5px;">貯金箱の中身を数えて、実際の金額を入力してください。</p>
-        <label>数えた実額 <span style="color:#e53935;">*</span>
-            <input type="number" id="input-adjustment-real" min="0" placeholder="例: 3000">
-        </label>
-        <label>メモ (任意)
-            <input type="text" id="input-adjustment-memo" placeholder="例: 10円玉が多かった">
-        </label>
-        <button class="btn-adjust" style="margin-top:20px; font-size:1.1em; padding:15px;" onclick="saveAdjustment()">登録する</button>
-        <button class="btn-back" onclick="changeScreen('screen-home')">戻る</button>
-    </div>
 </div>
 
 <script>
+    // 旧データ（donations / purchases / adjustments）との互換性を維持。
+    // adjustments は読み込み時に保持するが、新規入力・表示は廃止。
     let appData = { donations: [], purchases: [], adjustments: [] };
     const GAS_URL = 'https://script.google.com/macros/s/AKfycbwcPFgs5V2wnBhaqUiaB6C_5c8Z2mJ8wCnQsPGN7qs0f1Ri1qxLPJSWX-bIX7-bZ1Ll/exec';
 
+    // ============================================================
+    // 通信
+    // ============================================================
     function showLoading(isLoading) {
         document.getElementById('loading-overlay').style.display = isLoading ? 'flex' : 'none';
     }
@@ -434,10 +472,13 @@
         try {
             const response = await fetch(GAS_URL);
             if (!response.ok) throw new Error('通信エラー');
-            
             const data = await response.json();
-            appData = data; 
-            updateHomeUI(); 
+            appData = {
+                donations:   Array.isArray(data.donations)   ? data.donations   : [],
+                purchases:   Array.isArray(data.purchases)   ? data.purchases   : [],
+                adjustments: Array.isArray(data.adjustments) ? data.adjustments : []
+            };
+            updateHomeUI();
         } catch (error) {
             console.error(error);
             alert('データの読み込みに失敗しました。更新ボタンを押すか、ページを再読み込みしてください');
@@ -448,21 +489,16 @@
         }
     }
 
-    function loadData() {
-        return appData;
-    }
+    function loadData() { return appData; }
 
     async function saveData(data) {
         showLoading(true);
-        appData = data; 
-        
+        appData = data;
         try {
             const response = await fetch(GAS_URL, {
                 method: 'POST',
-                headers: {
-                    'Content-Type': 'text/plain',
-                },
-                body: JSON.stringify(appData) 
+                headers: { 'Content-Type': 'text/plain' },
+                body: JSON.stringify(appData)
             });
             if (!response.ok) throw new Error('通信エラー');
         } catch (error) {
@@ -473,53 +509,74 @@
         }
     }
 
+    // ============================================================
+    // 集計計算
+    // 最新の買い出し報告（id最大値）に realAmount がある場合は実残額アンカー方式。
+    // アンカー後（id > latestPurchase.id）の募金を加算する。
+    // アンカーなし（買い出し未実施または旧形式データ）は旧計算にフォールバック。
+    // 常に「集まった額 = 使った額 + のこり」が成立する。
+    // ============================================================
     function calculateSummary(data) {
-        let totalDonations = 0;
-        data.donations.forEach(function(d) { totalDonations += d.amount; });
+        const purchases   = data.purchases   || [];
+        const donations   = data.donations   || [];
+        const adjustments = data.adjustments || [];
 
-        let totalPurchases = 0;
-        data.purchases.forEach(function(p) { totalPurchases += p.amount; });
+        const totalPurchases = purchases.reduce((s, p) => s + (Number(p.amount) || 0), 0);
 
-        let totalAdjustments = 0;
-        data.adjustments.forEach(function(a) { totalAdjustments += a.diffAmount; });
+        // 最新の買い出し報告 = id が最大のレコード（配列順序に依存しない）
+        const latestPurchase = purchases.length > 0
+            ? purchases.reduce((max, p) => p.id > max.id ? p : max)
+            : null;
 
-        // 残高調整の差額を「集まった額」に含める
-        totalDonations += totalAdjustments;
+        const hasRealAmount = latestPurchase &&
+            latestPurchase.realAmount !== undefined &&
+            latestPurchase.realAmount !== '' &&
+            !isNaN(Number(latestPurchase.realAmount));
 
-        // のこりは「集まった額 − 使った額」だけで求める
-        let balance = totalDonations - totalPurchases;
+        let balance;
+        if (hasRealAmount) {
+            // アンカー後の募金を加算
+            const laterDonations = donations
+                .filter(d => d.id > latestPurchase.id)
+                .reduce((s, d) => s + (Number(d.amount) || 0), 0);
+            balance = Number(latestPurchase.realAmount) + laterDonations;
+        } else {
+            // 旧計算（買い出しなし、または旧形式の purchases）
+            const totalDonations = donations.reduce((s, d) => s + (Number(d.amount) || 0), 0);
+            const totalAdj = adjustments.reduce((s, a) => s + (Number(a.diffAmount) || 0), 0);
+            balance = totalDonations + totalAdj - totalPurchases;
+        }
 
         return {
-            totalDonations: totalDonations,
-            totalPurchases: totalPurchases,
-            balance: balance
+            totalDonations: totalPurchases + balance,
+            totalPurchases,
+            balance
         };
     }
 
+    // ============================================================
+    // 画面遷移
+    // ============================================================
     function changeScreen(screenId) {
         document.querySelectorAll('.screen').forEach(function(screen) {
             screen.classList.remove('active');
         });
         document.getElementById(screenId).classList.add('active');
 
-        if (screenId === 'screen-adjustment') {
-            const data = loadData();
-            const summary = calculateSummary(data);
-            document.getElementById('disp-calc-balance').textContent = formatMoney(summary.balance);
+        if (screenId === 'screen-purchase') {
+            const summary = calculateSummary(loadData());
+            document.getElementById('disp-calc-balance-purchase').textContent = formatMoney(summary.balance);
         }
     }
 
-    // 🔄 追加: アコーディオンを開閉する関数
-    // 押されたカテゴリだけを開き、他は閉じるように制御します
+    // ============================================================
+    // アコーディオン（記録一覧）
+    // ============================================================
     function toggleHistoryCategory(categoryId) {
-        const categories = ['purchases', 'donations', 'adjustments'];
-        
-        categories.forEach(function(cat) {
+        ['purchases', 'donations'].forEach(function(cat) {
             const contentEl = document.getElementById('content-' + cat);
-            const iconEl = document.getElementById('icon-' + cat);
-            
+            const iconEl    = document.getElementById('icon-'    + cat);
             if (cat === categoryId) {
-                // 押されたカテゴリの処理（開いていれば閉じ、閉じていれば開く）
                 if (contentEl.classList.contains('open')) {
                     contentEl.classList.remove('open');
                     iconEl.textContent = '＞';
@@ -528,129 +585,128 @@
                     iconEl.textContent = '∨';
                 }
             } else {
-                // 他のカテゴリはすべて閉じる
                 contentEl.classList.remove('open');
                 iconEl.textContent = '＞';
             }
         });
     }
 
+    // ============================================================
+    // ユーティリティ
+    // ============================================================
     function formatMoney(amount) {
-        return amount.toLocaleString() + '円';
+        return Number(amount).toLocaleString() + '円';
     }
 
     function getNowString() {
         const now = new Date();
-        const y = now.getFullYear();
-        const m = String(now.getMonth() + 1).padStart(2, '0');
-        const d = String(now.getDate()).padStart(2, '0');
-        const h = String(now.getHours()).padStart(2, '0');
+        const y   = now.getFullYear();
+        const m   = String(now.getMonth() + 1).padStart(2, '0');
+        const d   = String(now.getDate()).padStart(2, '0');
+        const h   = String(now.getHours()).padStart(2, '0');
         const min = String(now.getMinutes()).padStart(2, '0');
         return `${y}/${m}/${d} ${h}:${min}`;
     }
 
+    // ============================================================
+    // ホーム画面 UI 更新
+    // ============================================================
     function updateHomeUI() {
-        const data = loadData();
+        const data    = loadData();
         const summary = calculateSummary(data);
 
-        document.getElementById('disp-balance').textContent = formatMoney(summary.balance);
+        document.getElementById('disp-balance').textContent         = formatMoney(summary.balance);
         document.getElementById('disp-total-donations').textContent = formatMoney(summary.totalDonations);
         document.getElementById('disp-total-purchases').textContent = formatMoney(summary.totalPurchases);
 
-        if (data.adjustments.length > 0) {
-            const lastDateTime = data.adjustments[data.adjustments.length - 1].date;
-            const lastDateOnly = lastDateTime.split(' ')[0];
-            document.getElementById('disp-last-adjust-date').textContent = lastDateOnly;
+        // 最新の買い出し報告（id最大値）
+        const purchases = data.purchases || [];
+        const latestPurchase = purchases.length > 0
+            ? purchases.reduce((max, p) => p.id > max.id ? p : max)
+            : null;
+
+        // 最新の買い出し報告日
+        document.getElementById('disp-last-purchase-date').textContent =
+            latestPurchase ? latestPurchase.date.split(' ')[0] : '未実施';
+
+        // 買い出し担当オススメ（最新報告のオススメのみ。空なら非表示）
+        const recommendCard = document.getElementById('home-recommend-card');
+        const recommendText = document.getElementById('home-recommend-text');
+        if (latestPurchase && latestPurchase.items && String(latestPurchase.items).trim()) {
+            recommendText.textContent = String(latestPurchase.items).trim();
+            recommendCard.style.display = 'block';
         } else {
-            document.getElementById('disp-last-adjust-date').textContent = "未実施";
+            recommendCard.style.display = 'none';
         }
 
-        const homePurchaseBox = document.getElementById('home-purchase-list');
-        homePurchaseBox.innerHTML = '';
-        const totalPurchasesCount = data.purchases.length;
+        // 記録一覧を更新
+        renderHistoryList(data.purchases || [], 'list-purchases', 'purchases');
+        renderHistoryList(data.donations || [], 'list-donations', 'donations');
 
-        if (totalPurchasesCount === 0) {
-            homePurchaseBox.innerHTML = '<div class="purchase-empty">まだ買い出し記録はありません</div>';
-        } else {
-            const reversedPurchases = [...data.purchases].reverse();
-            const displayPurchases = reversedPurchases.slice(0, 3);
-            
-            displayPurchases.forEach(function(item) {
-                const row = document.createElement('div');
-                row.className = 'purchase-row';
-                row.textContent = item.items;
-                homePurchaseBox.appendChild(row);
-            });
-
-            if (totalPurchasesCount > 3) {
-                const hiddenCount = totalPurchasesCount - 3;
-                const note = document.createElement('div');
-                
-                note.style.fontSize = '0.85em';
-                note.style.color = '#90a4ae';
-                note.style.textAlign = 'right';
-                note.style.marginTop = '8px';
-                note.textContent = `ほか${hiddenCount}件は「記録の一覧」で確認できます`;
-                
-                homePurchaseBox.appendChild(note);
-            }
-        }
-
-        function renderHistoryList(array, elementId, type) {
-            const ul = document.getElementById(elementId);
-            ul.innerHTML = '';
-            
-            // 🔄 追加: 見出しの件数を自動更新する
-            document.getElementById('count-' + type).textContent = array.length + '件';
-            
-            // 🔄 追加: 記録が0件のときはメッセージを出して終わる
-            if (array.length === 0) {
-                ul.innerHTML = '<div class="history-empty">記録はまだありません</div>';
-                return;
-            }
-            
-            const reversedArray = [...array].reverse();
-            reversedArray.forEach(function(item) {
-                const li = document.createElement('li');
-                let textHTML = `<div class="item-info"><div class="item-date">${item.date}</div>`;
-                
-                if (type === 'donations') {
-                    textHTML += `<div class="item-amount" style="color:var(--accent-green);">+${formatMoney(item.amount)}</div>`;
-                    if (item.memo) textHTML += `<div style="font-size:0.85em; color:#78909c;">${item.memo}</div>`;
-                } else if (type === 'purchases') {
-                    textHTML += `<div style="font-weight:bold;">${item.items}</div>`;
-                    textHTML += `<div class="item-amount" style="color:var(--accent-orange);">-${formatMoney(item.amount)}</div>`;
-                } else if (type === 'adjustments') {
-                    let sign = item.diffAmount >= 0 ? '+' : '';
-                    let color = item.diffAmount >= 0 ? 'var(--accent-green)' : '#ef5350';
-                    textHTML += `<div style="font-size:0.85em;">実額: ${formatMoney(item.realAmount)}</div>`;
-                    textHTML += `<div class="item-amount" style="color:${color};">調整: ${sign}${formatMoney(item.diffAmount)}</div>`;
-                    if (item.memo) textHTML += `<div style="font-size:0.85em; color:#78909c;">${item.memo}</div>`;
-                }
-                textHTML += `</div>`;
-
-                const delBtn = `<button class="btn-delete" onclick="deleteRecord('${type}', ${item.id})">削除</button>`;
-                li.innerHTML = textHTML + delBtn;
-                ul.appendChild(li);
-            });
-        }
-
-        renderHistoryList(data.purchases, 'list-purchases', 'purchases');
-        renderHistoryList(data.donations, 'list-donations', 'donations');
-        renderHistoryList(data.adjustments, 'list-adjustments', 'adjustments');
-
-        // 🔄 追加: 画面を描画し直したときは、すべてのアコーディオンを「閉じた状態」にリセットする
-        const categories = ['purchases', 'donations', 'adjustments'];
-        categories.forEach(function(cat) {
+        // アコーディオンをリセット（閉じた状態に）
+        ['purchases', 'donations'].forEach(function(cat) {
             document.getElementById('content-' + cat).classList.remove('open');
-            document.getElementById('icon-' + cat).textContent = '＞';
+            document.getElementById('icon-'    + cat).textContent = '＞';
         });
     }
 
+    function renderHistoryList(array, elementId, type) {
+        const ul = document.getElementById(elementId);
+        ul.innerHTML = '';
+        document.getElementById('count-' + type).textContent = array.length + '件';
+
+        if (array.length === 0) {
+            ul.innerHTML = '<div class="history-empty">記録はまだありません</div>';
+            return;
+        }
+
+        // 削除可否の判定に使う最新買い出し報告 ID
+        const purchases = appData.purchases || [];
+        const latestPurchaseId = purchases.length > 0
+            ? Math.max(...purchases.map(p => p.id))
+            : null;
+
+        const reversedArray = [...array].reverse();
+        reversedArray.forEach(function(item) {
+            const li = document.createElement('li');
+            let textHTML = `<div class="item-info"><div class="item-date">${item.date}</div>`;
+
+            if (type === 'donations') {
+                textHTML += `<div class="item-amount" style="color:var(--accent-green);">+${formatMoney(item.amount)}</div>`;
+
+            } else if (type === 'purchases') {
+                if (item.items && String(item.items).trim()) {
+                    textHTML += `<div style="font-weight:bold; font-size:0.9em;">🌟 ${String(item.items).trim()}</div>`;
+                }
+                textHTML += `<div class="item-amount" style="color:var(--accent-orange);">使用: -${formatMoney(item.amount)}</div>`;
+                if (item.realAmount !== undefined && item.realAmount !== '') {
+                    textHTML += `<div style="font-size:0.85em; color:var(--primary-color);">実残額: ${formatMoney(Number(item.realAmount))}</div>`;
+                }
+            }
+            textHTML += '</div>';
+
+            // 削除可能なものだけボタンを表示
+            let canDelete = false;
+            if (type === 'donations') {
+                canDelete = (latestPurchaseId === null || item.id > latestPurchaseId);
+            } else if (type === 'purchases') {
+                canDelete = (item.id === latestPurchaseId);
+            }
+            if (canDelete) {
+                textHTML += `<button class="btn-delete" onclick="deleteRecord('${type}', ${item.id})">削除</button>`;
+            }
+
+            li.innerHTML = textHTML;
+            ul.appendChild(li);
+        });
+    }
+
+    // ============================================================
+    // 募金の登録
+    // ============================================================
     async function saveDonation() {
         const amountEl = document.getElementById('input-donation-amount');
-        const memoEl = document.getElementById('input-donation-memo');
-        const amount = parseInt(amountEl.value, 10);
+        const amount   = parseInt(amountEl.value, 10);
 
         if (isNaN(amount) || amount < 100) {
             alert('金額は100円以上で正しく入力してください。');
@@ -658,89 +714,205 @@
         }
 
         const data = loadData();
-        const record = { id: Date.now(), amount: amount, date: getNowString(), memo: memoEl.value, user: '' };
-        data.donations.push(record);
-        
-        await saveData(data);
+        data.donations.push({ id: Date.now(), amount: amount, date: getNowString(), memo: '', user: '' });
 
-        amountEl.value = ''; memoEl.value = '';
-        updateHomeUI(); 
+        await saveData(data);
+        amountEl.value = '';
+        updateHomeUI();
         changeScreen('screen-home');
     }
 
+    // ============================================================
+    // 買い出し報告の登録（旧「残高調整」を統合）
+    // realAmount: 買い出し後に実際に数えた残額
+    // items: 買い出し担当オススメ（任意、空文字可）
+    // ============================================================
     async function savePurchase() {
-        const itemsEl = document.getElementById('input-purchase-items');
-        const amountEl = document.getElementById('input-purchase-amount');
-        const items = itemsEl.value.trim();
-        const amount = parseInt(amountEl.value, 10);
+        const itemsEl      = document.getElementById('input-purchase-items');
+        const amountEl     = document.getElementById('input-purchase-amount');
+        const realAmountEl = document.getElementById('input-purchase-realAmount');
 
-        if (items === '') { alert('買ったものを入力してください。'); return; }
-        if (isNaN(amount) || amount < 0) { alert('使った額を正しく入力してください。'); return; }
+        const amount     = parseInt(amountEl.value, 10);
+        const realAmount = parseInt(realAmountEl.value, 10);
 
-        const data = loadData();
-        const record = { id: Date.now(), items: items, amount: amount, date: getNowString(), user: '' };
-        data.purchases.push(record);
-        
-        await saveData(data);
-
-        itemsEl.value = ''; amountEl.value = '';
-        updateHomeUI(); 
-        changeScreen('screen-home');
-    }
-
-    async function saveAdjustment() {
-        const realEl = document.getElementById('input-adjustment-real');
-        const memoEl = document.getElementById('input-adjustment-memo');
-        const realAmount = parseInt(realEl.value, 10);
-
-        if (isNaN(realAmount) || realAmount < 0) { alert('数えた実額を正しく入力してください。'); return; }
-
-        const data = loadData();
-        const currentBalance = calculateSummary(data).balance;
-        const diffAmount = realAmount - currentBalance;
-
-        const record = { id: Date.now(), realAmount: realAmount, diffAmount: diffAmount, date: getNowString(), memo: memoEl.value, user: '' };
-        data.adjustments.push(record);
-        
-        await saveData(data);
-
-        realEl.value = ''; memoEl.value = '';
-        updateHomeUI(); 
-        changeScreen('screen-home');
-    }
-
-    async function deleteRecord(type, id) {
-        const data = loadData();
-
-        let latestAdjustmentId = null;
-        if (data.adjustments.length > 0) {
-            const ids = data.adjustments.map(function(a) { return a.id; });
-            latestAdjustmentId = Math.max(...ids);
+        if (isNaN(amount) || amount < 0) {
+            alert('使った額を正しく入力してください。');
+            return;
+        }
+        if (isNaN(realAmount) || realAmount < 0) {
+            alert('買い出し後の実際の残額を正しく入力してください。');
+            return;
         }
 
-        if (latestAdjustmentId !== null) {
-            if (type === 'donations' || type === 'purchases') {
-                if (id < latestAdjustmentId) {
-                    alert('この記録は、最新の残高調整より前に登録されたため削除できません。\n残高調整のあとは過去の記録を消すと残額の計算が合わなくなります。\nどうしても消したい場合は、先に最新の残高調整を削除してください。');
-                    return; 
-                }
-            } else if (type === 'adjustments') {
-                if (id !== latestAdjustmentId) {
-                    alert('過去の残高調整は、単独では削除できません。\n新しい残高調整から順番に削除してください。');
-                    return; 
-                }
+        const data = loadData();
+        data.purchases.push({
+            id:         Date.now(),
+            items:      itemsEl.value.trim(),
+            amount:     amount,
+            realAmount: realAmount,
+            date:       getNowString(),
+            user:       ''
+        });
+
+        await saveData(data);
+        itemsEl.value = ''; amountEl.value = ''; realAmountEl.value = '';
+        updateHomeUI();
+        changeScreen('screen-home');
+    }
+
+    // ============================================================
+    // 削除処理
+    // 最新の買い出し報告 ID は Math.max で求める（配列順序に依存しない）。
+    // ============================================================
+    function deleteRecord(type, id) {
+        const data = loadData();
+        const purchases = data.purchases || [];
+        const latestPurchaseId = purchases.length > 0
+            ? Math.max(...purchases.map(p => p.id))
+            : null;
+
+        if (type === 'donations') {
+            if (latestPurchaseId !== null && id <= latestPurchaseId) {
+                alert('最新の買い出し報告より前の募金は削除できません。\n残額の基準が崩れるためです。');
+                return;
             }
+            if (!confirm('この募金記録を削除しますか？\n（残額が再計算されます）')) return;
+            doDeleteRecord('donations', id);
+
+        } else if (type === 'purchases') {
+            if (id !== latestPurchaseId) {
+                alert('過去の買い出し報告は削除できません。\n最新から順に削除してください。');
+                return;
+            }
+            requestPin(() => {
+                if (!confirm('この買い出し報告を削除しますか？\n（残額が再計算されます）')) return;
+                doDeleteRecord('purchases', id);
+            });
         }
+    }
 
-        if (!confirm('本当にこの記録を削除しますか？\n（削除すると合計や残額が再計算されます）')) return;
-
-        data[type] = data[type].filter(function(item) { return item.id !== id; });
-        
+    async function doDeleteRecord(type, id) {
+        const data = loadData();
+        data[type] = data[type].filter(item => item.id !== id);
         await saveData(data);
-        
         updateHomeUI();
     }
 
+    // ============================================================
+    // PIN（簡易ロック）
+    // PIN の検証・変更は GAS サーバー側で行う。
+    // クライアント側には PIN の値を保持しない。
+    // ============================================================
+    let pendingPinCallback = null;
+    let lastVerifiedPin    = null; // パスワード変更フロー用の一時保持（変更送信後にクリア）
+
+    function requestPin(callback) {
+        pendingPinCallback = callback;
+        document.getElementById('pin-input').value = '';
+        document.getElementById('pin-error').textContent = '';
+        document.getElementById('pin-modal').style.display = 'flex';
+        setTimeout(() => document.getElementById('pin-input').focus(), 100);
+    }
+
+    async function submitPin() {
+        const entered = document.getElementById('pin-input').value;
+        if (!/^\d{4}$/.test(entered)) {
+            document.getElementById('pin-error').textContent = '4桁の数字を入力してください';
+            return;
+        }
+        showLoading(true);
+        try {
+            const response = await fetch(GAS_URL, {
+                method: 'POST',
+                headers: { 'Content-Type': 'text/plain' },
+                body: JSON.stringify({ type: 'check_pin', pin: entered })
+            });
+            const result = await response.json();
+            if (result.ok === true) {
+                lastVerifiedPin = entered;
+                document.getElementById('pin-modal').style.display = 'none';
+                if (pendingPinCallback) {
+                    const cb = pendingPinCallback;
+                    pendingPinCallback = null;
+                    cb();
+                }
+            } else {
+                document.getElementById('pin-error').textContent = 'パスワードが違います';
+                document.getElementById('pin-input').value = '';
+                document.getElementById('pin-input').focus();
+            }
+        } catch (e) {
+            alert('通信エラーが発生しました。再度お試しください。');
+        } finally {
+            showLoading(false);
+        }
+    }
+
+    function cancelPin() {
+        document.getElementById('pin-modal').style.display = 'none';
+        pendingPinCallback = null;
+        document.getElementById('pin-input').value = '';
+        document.getElementById('pin-error').textContent = '';
+    }
+
+    // ============================================================
+    // パスワード変更
+    // ============================================================
+    function startPinChange() {
+        requestPin(() => {
+            document.getElementById('input-new-pin').value = '';
+            document.getElementById('input-confirm-pin').value = '';
+            document.getElementById('pin-change-section').style.display = 'block';
+        });
+    }
+
+    function closePinChangeSection() {
+        document.getElementById('pin-change-section').style.display = 'none';
+        lastVerifiedPin = null;
+    }
+
+    async function submitNewPin() {
+        const newPin     = document.getElementById('input-new-pin').value;
+        const confirmPin = document.getElementById('input-confirm-pin').value;
+
+        if (!/^\d{4}$/.test(newPin)) {
+            alert('新しいパスワードは4桁の数字で入力してください。');
+            return;
+        }
+        if (newPin !== confirmPin) {
+            alert('確認用のパスワードが一致しません。');
+            return;
+        }
+        if (!lastVerifiedPin) {
+            alert('セッションが切れました。もう一度パスワード変更を開始してください。');
+            closePinChangeSection();
+            return;
+        }
+
+        showLoading(true);
+        try {
+            const response = await fetch(GAS_URL, {
+                method: 'POST',
+                headers: { 'Content-Type': 'text/plain' },
+                body: JSON.stringify({ type: 'change_pin', currentPin: lastVerifiedPin, newPin: newPin })
+            });
+            const result = await response.json();
+            if (result.status === 'ok') {
+                alert('パスワードを変更しました。全端末で新しいパスワードが有効になります。');
+                closePinChangeSection();
+            } else {
+                alert('パスワード変更に失敗しました。再度お試しください。');
+            }
+        } catch (e) {
+            alert('通信エラーが発生しました。');
+        } finally {
+            showLoading(false);
+        }
+    }
+
+    // ============================================================
+    // 初期化
+    // ============================================================
     window.onload = function() {
         fetchFromCloud();
     };
