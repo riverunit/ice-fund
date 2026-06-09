@@ -492,6 +492,13 @@
     function loadData() { return appData; }
 
     async function saveData(data) {
+        // 送信前の形状チェック。3配列が揃っていない場合は絶対に送信しない。
+        if (!Array.isArray(data.donations) ||
+            !Array.isArray(data.purchases) ||
+            !Array.isArray(data.adjustments)) {
+            alert('データの形式に問題があります。保存を中止しました。\nページを再読み込みして最新の状態に戻してください。');
+            return;
+        }
         showLoading(true);
         appData = data;
         try {
@@ -501,6 +508,10 @@
                 body: JSON.stringify(appData)
             });
             if (!response.ok) throw new Error('通信エラー');
+            const result = await response.json().catch(() => null);
+            if (result && result.status === 'error') {
+                throw new Error('GASバリデーションエラー: ' + (result.message || '不明'));
+            }
         } catch (error) {
             console.error(error);
             alert('保存に失敗しました。通信状態を確認してください');
